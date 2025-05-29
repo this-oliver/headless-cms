@@ -13,12 +13,20 @@ This template uses [Strapi](https://github.com/strapi/strapi) as the headless CM
 
 ## Usage
 
+> [!NOTE]
+> Strapi can be used in a `development` and `production` environment. The difference between the two is that in a `development` environment, you can build and modify data structures (i.e. create a content type, add a field etc.) which you cannot do in a `production` environment.
+
+This template can be used in two different ways:
+
+- as [nodejs application](#nodejs)
+- as a [container application](#container)
+
+### Nodejs
+
 Pre-requisites:
 
 - [Node.js](https://nodejs.org/en/download/) (`v22.14.0`)
 - `npm` (pnpm does not work with Strapi)
-
-To get started with a `development environment`, you can use the following commands:
 
 ```bash
 # Install dependencies
@@ -27,21 +35,49 @@ npm install
 # Build the admin panel
 npm run build
 
-# Start the Strapi application (listinging on port 1337)
+# Start the Strapi application (in development mode)
+# note: this will start the Strapi application at http://localhost:1337
 npm run dev
+# or
+npm run start
 ```
 
-For a `production environment`, you can use the following commands:
+### Container
+
+This repository lets you startup a strapi instance using Docker or Docker Compose.
+
+Pre-requisites:
+
+- [Docker](https://www.docker.com/get-started)
+- [Docker Compose](https://docs.docker.com/compose/install/)
+
+To quickly get started with, run the following commands:
 
 ```bash
-# Install dependencies
-npm install --production
+# Build the container image
+docker build -t cms .
 
-# Build the admin panel
-npm run build
+# Start the container (will listen on http://localhost:1337)
+docker run \
+--name cms \
+-p 1337:1337 \
+-e NODE_ENV=development \
+-e APP_KEYS=<your-base64-app-keys> \
+cms
+```
 
-# Start the Strapi application (listening on port 1337)
-npm run start
+- the `docker build` command builds the container image with the tag `cms` based on the [`Dockerfile`](./Dockerfile) in the root of the repository.
+- the `docker run` command:
+  - `--name cms` names the container `cms`
+  - `-p 1337:1337` maps port `1337` of the container to port `1337` of the host machine
+  - `-e NODE_ENV=development` sets the environment variable `NODE_ENV` to `development`
+  - `-e APP_KEYS=<your-base64-app-keys>` sets the environment variable `APP_KEYS` to a base64 encoded string (you can generate this using the command `node -e "console.log(Buffer.from('your-secret-key').toString('base64'))"` where `your-secret-key` is a secret key of your choice)
+
+For a more advanced setup, you can use the provided [`docker-compose.yml`](./docker-compose.yml) file to start the Strapi application with behind a reverse proxy (e.g. Nginx):
+
+```bash
+# Start the Strapi application with Docker Compose
+docker-compose up
 ```
 
 ## Learn more
