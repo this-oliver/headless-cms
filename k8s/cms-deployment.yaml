@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cms
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cms
+  template:
+    metadata:
+      labels:
+        app: cms
+    spec:
+      containers:
+        - name: cms
+          image: cms:dev
+          imagePullPolicy: Never
+          envFrom:
+            - secretRef:
+                name: cms-env
+          ports:
+            - containerPort: 1337
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "256Mi"
+            limits:
+              cpu: "500m"
+              memory: "1Gi"
+          volumeMounts:
+            - name: src
+              mountPath: /app/src
+            - name: public
+              mountPath: /app/public
+            - name: database
+              mountPath: /app/.database
+      volumes:
+        - name: src
+          persistentVolumeClaim:
+            claimName: cms-src-pvc
+        - name: public
+          persistentVolumeClaim:
+            claimName: cms-public-pvc
+        - name: database
+          persistentVolumeClaim:
+            claimName: cms-database-pvc
