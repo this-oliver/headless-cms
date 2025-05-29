@@ -13,7 +13,7 @@ services:
     volumes:
       - ./src:/app/src
       - ./public:/app/public
-      - ./.tmp:/app/.tmp
+      - ./.database:/app/.database
     restart: unless-stopped
 
   frontend:
