@@ -1,4 +1,4 @@
-version: "3.8"
+version: '3.8'
 
 services:
   cms:
@@ -9,7 +9,7 @@ services:
     env_file:
       - .env
     expose:
-      - "1337"
+      - '1337'
     volumes:
       - ./src:/app/src
       - ./public:/app/public
@@ -20,11 +20,11 @@ services:
     # add your frontend application here
     image: node:22-alpine # Replace with your actual frontend image
     container_name: frontend
-    command: ["sh", "-c", "while :; do sleep 10; done"] # Placeholder, replace with your frontend start command
+    command: [sh, -c, 'while :; do sleep 10; done'] # Placeholder, replace with your frontend start command
     depends_on:
       - cms
     expose:
-      - "3000"
+      - '3000'
     restart: unless-stopped
 
   nginx:
@@ -34,7 +34,7 @@ services:
       - frontend
       - cms
     ports:
-      - "80:80"
+      - '80:80'
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     restart: unless-stopped

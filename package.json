@@ -3,12 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "description": "A Strapi application",
+  "engines": {
+    "node": "22.x.x",
+    "npm": ">=6.0.0"
+  },
   "scripts": {
     "build": "strapi build",
     "console": "strapi console",
     "deploy": "strapi deploy",
     "dev": "strapi develop",
     "develop": "strapi develop",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "prepare": "husky",
     "seed:example": "node ./scripts/seed.js",
     "start": "strapi start",
     "strapi": "strapi",
@@ -29,14 +36,19 @@
     "styled-components": "^6.0.0"
   },
   "devDependencies": {
+    "@antfu/eslint-config": "^4.13.2",
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "eslint": "^9.27.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.0",
     "typescript": "^5"
   },
-  "engines": {
-    "node": "22.x.x",
-    "npm": ">=6.0.0"
+  "lint-staged": {
+    "*": "pnpm run lint"
   },
   "strapi": {
     "uuid": "6187172f-80df-42f6-b942-29b2613eea77"
