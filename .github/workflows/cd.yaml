@@ -24,7 +24,8 @@ jobs:
         id: release
         uses: googleapis/release-please-action@a02a34c4d625f9be7cb89156071d8567266a2445 # v4.2.0
         with:
-          release-type: simple
+          release-type: node
+
   build:
     if: needs.release.outputs.released == 'true' || github.event_name == 'workflow_dispatch'
     needs: release
