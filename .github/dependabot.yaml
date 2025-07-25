@@ -11,7 +11,7 @@ updates:
     schedule:
       interval: daily
     commit-message:
-      prefix: 'chore(security):'
+      prefix: 'chore(security): '
     # Disable version updates for npm dependencies
     open-pull-requests-limit: 0
 
@@ -20,7 +20,7 @@ updates:
     schedule:
       interval: daily
     commit-message:
-      prefix: 'chore(security):'
+      prefix: 'chore(security): '
     # Disable version updates for docker dependencies
     open-pull-requests-limit: 0
 
@@ -29,6 +29,6 @@ updates:
     schedule:
       interval: daily
     commit-message:
-      prefix: 'chore(security):'
+      prefix: 'chore(security): '
     # Disable version updates for GitHub Actions dependencies
     open-pull-requests-limit: 0
