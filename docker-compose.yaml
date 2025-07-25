@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  cms:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    env_file:
+      - .env
+    expose:
+      - '1337'
+    volumes:
+      - ./src:/app/src
+      - ./public:/app/public
+      - ./.database:/app/.database
+    restart: unless-stopped
+
+nginx:
+  image: nginx:latest
+  ports:
+    - '80:80'
+  volumes:
+    - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    # - ./logs:/var/log/nginx
+    # - ./ssl/your_cert.pem:/etc/ssl/certs/cert.pem:ro
+    # - ./ssl/your_key.pem:/etc/ssl/private/key.pem:ro
+  depends_on:
+    - cms
