@@ -23,8 +23,10 @@ jobs:
         run: npm run lint
 
       - name: Lint PR commits
-        if: github.event_name == 'pull_request'
         run: npx commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose
+
+      - name: Lint PR Title
+        run: echo "${{ github.event.pull_request.title }}" | npx commitlint --verbose
 
   check-security:
     runs-on: ubuntu-latest
