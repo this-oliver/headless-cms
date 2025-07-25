@@ -87,7 +87,31 @@ docker-compose up
 
 Traditionally, if you wanted to build a website with dynamic content, you would need to implement a backend which consists of defining a data structure, creating a database and then implementing a backend that creates, reads, updates and deletes the data all while also authenticating and authorizing requests. You'd also have to create some sort of frontend to manage/administer the data (i.e. creating a blog post, editing a user profile, etc.). This is a lot of work especially if the end goal is to hand over the project to a non-technical.
 
+```mermaid
+flowchart TD
+    subgraph TC["Traditional CMS"]
+        style TC fill:#f9f,stroke:#333,stroke-width:2px
+        DB[Database]
+        CMS[CMS Backend]
+        UI[UI Frontend]
+        DB --> CMS --> UI --> Reader1((Reader))
+    end
+```
+
 A CMS (content management system) handles all the backend work for you (including the ui for managing the data) so you can focus on building the visual aspect of your project. Unlike traditional CMSs, a headless CMS does not come with a frontend. Instead, it provides an API that you can use to fetch the data and display it in your own frontend. This allows you to use any technology you want for the frontend (e.g. Vue, React, HTML + Vanilla JS, etc.) while still having a powerful backend to manage your data.
+
+```mermaid
+flowchart TD
+    subgraph HC["Headless CMS"]
+        style HC fill:#bbf,stroke:#333,stroke-width:2px
+        DB[Database]
+        CMS[CMS Backend]
+        DB --> CMS --> API[API]
+    end
+        API --> Web[Vue Web App] --> Reader2((Reader))
+        API --> Web2[React Web App] --> Reader3((Reader))
+        API --> Mobile[Mobile App] --> Reader4((Reader))
+```
 
 This template uses [Strapi](https://github.com/strapi/strapi) as the headless CMS for the following reasons:
 
