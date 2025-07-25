@@ -16,33 +16,11 @@ jobs:
         with:
           node-version-file: package.json
 
-      - uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v4.1.0
-
       - name: Install Dependencies
-        run: pnpm install
+        run: npm install
 
-      - name: Lint
-        run: pnpm lint
-
-      - uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e # v4.3.0
-        with:
-          node-version: latest
-
-      - name: Print versions
-        run: |
-          git --version
-          node --version
-          npm --version
-          npx commitlint --version
-
-      - name: Install commitlint
-        run: |
-          pnpm install conventional-changelog-conventionalcommits
-          pnpm install commitlint@latest
-
-      - name: Lint latest commit
-        if: github.event_name == 'push'
-        run: npx commitlint --last --verbose
+      - name: Lint Code
+        run: npm run lint
 
       - name: Lint PR commits
         if: github.event_name == 'pull_request'
