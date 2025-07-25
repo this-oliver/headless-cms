@@ -1,8 +1,8 @@
 {
-  "name": "my-strapi-project",
+  "name": "headless-cms",
   "version": "0.1.0",
   "private": true,
-  "description": "A Strapi application",
+  "description": "headless cms powered by Strapi",
   "engines": {
     "node": "22.x.x",
     "npm": ">=6.0.0"
@@ -12,11 +12,9 @@
     "console": "strapi console",
     "deploy": "strapi deploy",
     "dev": "strapi develop",
-    "develop": "strapi develop",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "prepare": "husky",
-    "seed:example": "node ./scripts/seed.js",
     "start": "strapi start",
     "strapi": "strapi",
     "upgrade": "npx @strapi/upgrade latest",
