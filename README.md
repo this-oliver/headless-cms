@@ -14,7 +14,10 @@ The purpose of this repository is to provide the following features:
 
 ## Usage
 
-You can run this template as a Node.js application or as a containerized service.
+> [!NOTE]
+> You'll need to setup the environment variables in a `.env` file before running the application. A sample [`.env.example`](.env.example) file is provided in the repository. To generate the environment variables, run `npm run token`.
+
+You can run this template as a Node.js application or as a containerized service. To define the structure of the content in the CMS, you will need to run the Strapi instance in `development` mode.
 
 ### Node.js
 
@@ -45,7 +48,13 @@ npm run start         # Start Strapi in production mode
 
 ```bash
 docker build -t cms .
-docker run --name cms -p 1337:1337 -e NODE_ENV=development -e APP_KEYS=<your-base64-app-keys> cms
+docker run --name cms \
+-p 1337:1337 \
+--env-file .env \
+-v ./.database:/app/.database \
+-v ./.uploads:/app/public/uploads \
+-v ./scr:/app/src \
+cms
 ```
 
 - Replace `<your-base64-app-keys>` with a base64-encoded secret key (e.g. `node -e "console.log(Buffer.from('your-secret-key').toString('base64'))"`).

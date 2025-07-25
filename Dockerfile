@@ -1,4 +1,4 @@
-FROM node:22.14.0
+FROM node:22.17.0-alpine
 
 # Set the working directory
 WORKDIR /app
@@ -7,7 +7,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm install --production
+RUN npm install
 
 # Copy the rest of the application code
 COPY config/ ./config/
@@ -25,6 +25,9 @@ ARG HOST=0.0.0.0
 ENV HOST=$HOST
 ARG DATABASE_CLIENT=sqlite
 ENV DATABASE_CLIENT=$DATABASE_CLIENT
+ARG NODE_ENV=production
+ENV NODE_ENV=$NODE_ENV
+ARG PORT=1337
 
 # Create an entrypoint script that starts up the application based on the NODE_ENV variable
 RUN echo '#!/bin/sh\n\
@@ -34,11 +37,7 @@ else\n\
   npm run dev\n\
 fi' > /app/entrypoint.sh && chmod +x /app/entrypoint.sh
 
-# Set the default environment variable for NODE_ENV
-ENV NODE_ENV=production
-
 # Expose the port the app runs on
-ARG PORT=1337
 EXPOSE $PORT
 
 # Set user to run the application and give them permissions to the app directory
