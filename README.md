@@ -47,7 +47,9 @@ npm run start         # Start Strapi in production mode
 **Quick start:**
 
 ```bash
+# Build the Docker image
 docker build -t cms .
+# Run the Docker container
 docker run --name cms \
 -p 1337:1337 \
 --env-file .env \
@@ -56,8 +58,6 @@ docker run --name cms \
 -v ./scr:/app/src \
 cms
 ```
-
-- Replace `<your-base64-app-keys>` with a base64-encoded secret key (e.g. `node -e "console.log(Buffer.from('your-secret-key').toString('base64'))"`).
 
 **With Docker Compose:**
 
