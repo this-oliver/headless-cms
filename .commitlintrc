@@ -7,14 +7,9 @@
       2,
       "always",
       [
-        "major",
-        "breaking",
-        "minor",
         "feat",
-        "ft",
-        "patch",
-        "chore",
         "fix",
+        "chore",
         "docs"
       ]
     ]
