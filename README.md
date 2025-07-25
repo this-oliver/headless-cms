@@ -18,6 +18,9 @@ You can run this template as a Node.js application or as a containerized service
 
 ### Node.js
 
+> [!NOTE]
+> Strapi does not support odd numbered Nodejs versions (e.g. `v22.x.x` is supported but `v21.x.x` is not). Currently, only `v20` and `v22` are supported.
+
 **Requirements:**
 
 - Node.js (`v22.14.0`)
