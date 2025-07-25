@@ -1,15 +1,11 @@
-# Template for Headless CMS (Strapi)
+# Headless CMS
 
-Traditionally, if you wanted to build a website with dynamic content, you would need to implement a backend which consists of defining a data structure, creating a database and then implementing a backend that creates, reads, updates and deletes the data all while also authenticating and authorizing requests. You'd also have to create some sort of frontend to manage/administer the data (i.e. creating a blog post, editing a user profile, etc.). This is a lot of work especially if the end goal is to hand over the project to a non-technical.
+Think "Wordpress" without the frontend. This template provides the following key features that allow you to plug in your own frontend:
 
-A CMS (content management system) handles all the backend work for you (including the ui for managing the data) so you can focus on building the visual aspect of your project. Unlike traditional CMSs, a headless CMS does not come with a frontend. Instead, it provides an API that you can use to fetch the data and display it in your own frontend. This allows you to use any technology you want for the frontend (e.g. Vue, React, HTML + Vanilla JS, etc.) while still having a powerful backend to manage your data.
+1. a headless CMS that you can use to manage your content (data)
+2. a REST (and GraphQL) API that you can use to fetch the data from the CMS
 
-This template uses [Strapi](https://github.com/strapi/strapi) as the headless CMS for the following reasons:
-
-- **Open Source**: Strapi is open source and free to use which means you can self-host it and have full control over your data.
-- **Customizable**: Strapi is highly customizable and allows you to define your own data structure, create custom APIs, and even extend the admin panel.
-- **Nodejs**: Strapi is built with Nodejs which allows you to leverage certain Nodejs features and libraries.
-- **Community**: Strapi has a large and active community which means you can find help and resources easily.
+The headless CMS in this template is powered by [Strapi](https://strapi.io) which is the most intuitive and powerful open-source headless CMS on the market.
 
 ## Usage
 
@@ -18,14 +14,17 @@ This template uses [Strapi](https://github.com/strapi/strapi) as the headless CM
 
 This template can be used in two different ways:
 
-- as [nodejs application](#nodejs)
-- as a [container application](#container)
+- [nodejs application](#nodejs)
+- [container application](#container)
 
 ### Nodejs
 
+> [!NOTE]
+> Strapi does not support odd numbered Nodejs versions (e.g. `v22.x.x` is supported but `v21.x.x` is not). Currently, only `v20` and `v22` are supported.
+
 Pre-requisites:
 
-- [Node.js](https://nodejs.org/en/download/) (`v22.14.0`)
+- [NodeJs](https://nodejs.org/en/download/) (`v22.xx.xx`)
 - `npm` (pnpm does not work with Strapi)
 
 ```bash
@@ -44,12 +43,12 @@ npm run start
 
 ### Container
 
-This repository lets you startup a strapi instance using Docker or Docker Compose.
+This repository lets you run Strapi using Docker.
 
 Pre-requisites:
 
 - [Docker](https://www.docker.com/get-started)
-- [Docker Compose](https://docs.docker.com/compose/install/)
+- (Optional) [Docker Compose](https://docs.docker.com/compose/install/)
 
 To quickly get started with, run the following commands:
 
@@ -73,12 +72,29 @@ cms
   - `-e NODE_ENV=development` sets the environment variable `NODE_ENV` to `development`
   - `-e APP_KEYS=<your-base64-app-keys>` sets the environment variable `APP_KEYS` to a base64 encoded string (you can generate this using the command `node -e "console.log(Buffer.from('your-secret-key').toString('base64'))"` where `your-secret-key` is a secret key of your choice)
 
+#### (Optional) Docker Compose
+
 For a more advanced setup, you can use the provided [`docker-compose.yml`](./docker-compose.yml) file to start the Strapi application with behind a reverse proxy (e.g. Nginx):
 
 ```bash
 # Start the Strapi application with Docker Compose
 docker-compose up
 ```
+
+## FAQ
+
+### What is a Headless CMS?
+
+Traditionally, if you wanted to build a website with dynamic content, you would need to implement a backend which consists of defining a data structure, creating a database and then implementing a backend that creates, reads, updates and deletes the data all while also authenticating and authorizing requests. You'd also have to create some sort of frontend to manage/administer the data (i.e. creating a blog post, editing a user profile, etc.). This is a lot of work especially if the end goal is to hand over the project to a non-technical.
+
+A CMS (content management system) handles all the backend work for you (including the ui for managing the data) so you can focus on building the visual aspect of your project. Unlike traditional CMSs, a headless CMS does not come with a frontend. Instead, it provides an API that you can use to fetch the data and display it in your own frontend. This allows you to use any technology you want for the frontend (e.g. Vue, React, HTML + Vanilla JS, etc.) while still having a powerful backend to manage your data.
+
+This template uses [Strapi](https://github.com/strapi/strapi) as the headless CMS for the following reasons:
+
+- **Open Source**: Strapi is open source and free to use which means you can self-host it and have full control over your data.
+- **Customizable**: Strapi is highly customizable and allows you to define your own data structure, create custom APIs, and even extend the admin panel.
+- **Nodejs**: Strapi is built with Nodejs which allows you to leverage certain Nodejs features and libraries.
+- **Community**: Strapi has a large and active community which means you can find help and resources easily.
 
 ## Learn more
 
