@@ -12,13 +12,14 @@
     "console": "strapi console",
     "deploy": "strapi deploy",
     "dev": "strapi develop",
-    "lint": "eslint .",
-    "lint:fix": "eslint --fix .",
-    "prepare": "husky",
+    "postinstall": "husky && npm run token",
     "start": "strapi start",
     "strapi": "strapi",
     "upgrade": "npx @strapi/upgrade latest",
-    "upgrade:dry": "npx @strapi/upgrade latest --dry"
+    "upgrade:dry": "npx @strapi/upgrade latest --dry",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "token": "npx ts-node ./scripts/tokens.ts"
   },
   "dependencies": {
     "@strapi/plugin-cloud": "5.12.4",
