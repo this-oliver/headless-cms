@@ -64,21 +64,28 @@ A traditional CMS manages both backend (data, logic) and frontend (UI), making i
 
 ```mermaid
 flowchart TD
-    TC[Traditional CMS]
-    DB[Database] --> CMS[Backend & Admin UI] --> UI[Frontend] --> User((User))
+    subgraph TC["Traditional CMS"]
+        style TC fill:#f9f,stroke:#333,stroke-width:2px
+        DB[Database]
+        CMS[CMS Backend]
+        UI[UI Frontend]
+        DB --> CMS --> UI --> Reader1((Reader))
+    end
 ```
 
 A headless CMS, like Strapi, only manages the backend and exposes content via an API. You can use any frontend technology to consume the API.
 
 ```mermaid
 flowchart TD
-    HC[Headless CMS]
-    DB2[Database] --> CMS2[Backend/API]
-    CMS2 --> API[API]
-    API --> Web[Web App]
-    API --> Mobile[Mobile App]
-    Web --> User2((User))
-    Mobile --> User3((User))
+    subgraph HC["Headless CMS"]
+        style HC fill:#bbf,stroke:#333,stroke-width:2px
+        DB[Database]
+        CMS[CMS Backend]
+        DB --> CMS --> API[API]
+    end
+        API --> Web[Vue Web App] --> Reader2((Reader))
+        API --> Web2[React Web App] --> Reader3((Reader))
+        API --> Mobile[Mobile App] --> Reader4((Reader))
 ```
 
 In summary: A headless CMS lets you manage content in one place and deliver it anywhere, using any frontend framework you prefer.
