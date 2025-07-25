@@ -13,7 +13,6 @@ RUN npm install
 COPY config/ ./config/
 COPY public/ ./public/
 COPY src/ ./src/
-COPY types/ ./types/
 COPY favicon.png ./
 COPY tsconfig.json ./
 
