@@ -48,7 +48,7 @@
     "typescript": "^5"
   },
   "lint-staged": {
-    "*": "pnpm run lint"
+    "*": "npm run lint"
   },
   "strapi": {
     "uuid": "6187172f-80df-42f6-b942-29b2613eea77"
