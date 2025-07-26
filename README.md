@@ -7,17 +7,19 @@ A headless CMS is a content management system that provides a platform for manag
 
 The purpose of this repository is to provide the following features:
 
-- **Opinionated setup**: A personal template for quickly setting up a headless CMS.
-- **Container image**: Strapi does not offer a container image so this template provides a Dockerfile to build an opinionated container image for Strapi.
-- **Security**: Security scans are performed on the template to ensure that vulnerabilities are identified and addressed continuously.
-- **Open-source**: This template uses open-source and community-supported projects to ensure longevity and flexibility.
+| Feature           | Description                                                                                                              |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| Opinionated setup | A personal template for quickly setting up a headless CMS.                                                               |
+| Container image   | Strapi does not offer a container image, so this template provides a Dockerfile to build an opinionated container image. |
+| Security          | Security scans are performed on the template to ensure vulnerabilities are identified and addressed continuously.        |
+| Open-source       | This template uses open-source and community-supported projects to ensure longevity and flexibility.                     |
 
-## Usage
+## Getting Started
 
 > [!NOTE]
 > You'll need to setup the environment variables in a `.env` file before running the application. A sample [`.env.example`](.env.example) file is provided in the repository. To generate the environment variables, run `npm run token`.
 
-You can run this template as a Node.js application or as a containerized service. To define the structure of the content in the CMS, you will need to run the Strapi instance in `development` mode.
+You can run this template as a Node.js application or as a containerized service.
 
 ### Node.js
 
@@ -34,7 +36,7 @@ npm install           # Install dependencies
 npm run build         # Build the admin panel
 npm run dev           # Start Strapi in development mode (http://localhost:1337)
 # or
-npm run start         # Start Strapi in production mode
+npm run start         # Start Strapi in production mode (http://localhost:1337)
 ```
 
 ### Docker
@@ -47,7 +49,9 @@ npm run start         # Start Strapi in production mode
 **Quick start:**
 
 ```bash
+# Build the Docker image
 docker build -t cms .
+# Run the Docker container
 docker run --name cms \
 -p 1337:1337 \
 --env-file .env \
@@ -57,13 +61,32 @@ docker run --name cms \
 cms
 ```
 
-- Replace `<your-base64-app-keys>` with a base64-encoded secret key (e.g. `node -e "console.log(Buffer.from('your-secret-key').toString('base64'))"`).
-
 **With Docker Compose:**
 
 ```bash
 docker-compose up
 ```
+
+## Usage
+
+The Strapi instance enables to key features:
+
+1. **Define content structure**: You can define the structure of your content (content types, fields, relationships) using the admin panel.
+2. **Manage content**: You can create, read, update, and delete content using the admin panel or the API.
+
+### Defining Content Structure
+
+Once the Strapi instance is running, you can access the admin panel at `http://localhost:1337/admin`. To define the structure of the content in the CMS, you will need to:
+
+- create an admin user
+- run the Strapi instance in `development` mode
+- use the admin panel to create content types, fields, and relationships
+
+The defined content will be stored in [`src/`](src/) directory, which is mounted as a volume in the Docker container. This allows you to version control your content structure and share it with others.
+
+### Creating Content
+
+Once you have defined your content structure, you can start creating content (this does not require the Strapi instance to be in `development` mode). The content will be stored in [`.database/`](.database/) directory, which is also mounted as a volume in the Docker container. This allows you to version control your content and share it with others. Media files (images, videos, etc.) will be stored in [`public/uploads/`](public/uploads/) directory, which is also mounted as a volume in the Docker container.
 
 ## FAQ
 
@@ -98,11 +121,3 @@ flowchart TD
 ```
 
 In summary: A headless CMS lets you manage content in one place and deliver it anywhere, using any frontend framework you prefer.
-
-## Learn more
-
-- [Strapi documentation](https://docs.strapi.io)
-- [Strapi resource center](https://strapi.io/resource-center)
-- [Strapi tutorials](https://strapi.io/tutorials)
-- [Strapi blog](https://strapi.io/blog)
-- [Changelog](https://strapi.io/changelog)
