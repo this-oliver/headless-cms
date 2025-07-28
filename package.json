@@ -12,7 +12,7 @@
     "console": "strapi console",
     "deploy": "strapi deploy",
     "dev": "strapi develop",
-    "prepare": "husky",
+    "prepare": "npx husky",
     "start": "strapi start",
     "strapi": "strapi",
     "upgrade": "npx @strapi/upgrade latest",
