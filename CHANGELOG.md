@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.1](https://github.com/this-oliver/headless-cms/compare/v1.0.0...v1.0.1) (2025-07-28)
+
+
+### Bug Fixes
+
+* admin panel not showing latest data structures ([#19](https://github.com/this-oliver/headless-cms/issues/19)) ([dab87c1](https://github.com/this-oliver/headless-cms/commit/dab87c1e731e4ccb24eee1044772006a74b270cd))
+* container not starting because of dockerfile entrypoint script ([#17](https://github.com/this-oliver/headless-cms/issues/17)) ([0d204e0](https://github.com/this-oliver/headless-cms/commit/0d204e09165b1eba6a5d86a7636d5d36c2149060))
+
 ## 1.0.0 (2025-07-25)
 
 
