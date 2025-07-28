@@ -44,4 +44,4 @@ RUN chown -R node:node /app
 USER node
 
 # Start the application
-ENTRYPOINT ["/app/entrypoint.sh"]
+ENTRYPOINT ["/bin/sh", "entrypoint.sh"]
