@@ -24,17 +24,7 @@ COPY public/ ./public/
 COPY src/ ./src/
 COPY favicon.png ./
 COPY tsconfig.json ./
-
-# Build the application
-RUN npm run build
-
-# Create an entrypoint script that starts up the application based on the NODE_ENV variable
-RUN echo '#!/bin/sh\n\
-if [ "$NODE_ENV" = "production" ]; then\n\
-  npm start\n\
-else\n\
-  npm run dev\n\
-fi' > /app/entrypoint.sh && chmod +x /app/entrypoint.sh
+COPY entrypoint.sh ./
 
 # Expose the port the app runs on
 EXPOSE $PORT
