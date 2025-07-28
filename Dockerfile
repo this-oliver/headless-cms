@@ -1,5 +1,14 @@
 FROM node:22.17.0-alpine
 
+# Define build arguments (with defaults) and set environment variables
+ARG HOST=0.0.0.0
+ENV HOST=$HOST
+ARG DATABASE_CLIENT=sqlite
+ENV DATABASE_CLIENT=$DATABASE_CLIENT
+ARG NODE_ENV=production
+ENV NODE_ENV=$NODE_ENV
+ARG PORT=1337
+
 # Set the working directory
 WORKDIR /app
 
@@ -18,15 +27,6 @@ COPY tsconfig.json ./
 
 # Build the application
 RUN npm run build
-
-# Define build arguments (with defaults) and set environment variables
-ARG HOST=0.0.0.0
-ENV HOST=$HOST
-ARG DATABASE_CLIENT=sqlite
-ENV DATABASE_CLIENT=$DATABASE_CLIENT
-ARG NODE_ENV=production
-ENV NODE_ENV=$NODE_ENV
-ARG PORT=1337
 
 # Create an entrypoint script that starts up the application based on the NODE_ENV variable
 RUN echo '#!/bin/sh\n\
